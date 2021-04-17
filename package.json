@@ -1,0 +1,34 @@
+{
+  "name": "empire-script",
+  "version": "1.0.0",
+  "description": "script",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karlknut/empire-script.git"
+  },
+  "keywords": [
+    "nodejs",
+    "script",
+    "push",
+    "notification"
+  ],
+  "author": "Knut",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karlknut/empire-script/issues"
+  },
+  "homepage": "https://github.com/karlknut/empire-script#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "cron": "^1.8.2",
+    "node-schedule": "^2.0.0",
+    "nodemailer": "^6.5.0",
+    "puppeteer": "^8.0.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  }
+}
