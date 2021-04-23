@@ -29,14 +29,12 @@ async function configureBrowser() {
 async function history() {
   const [response] = await Promise.all([
     page.waitForNavigation(waitOptions),
-    page.click('capitalize', clickOptions),
+    page.click("//*[@id='page-scroll']/div[1]/div/div/div[1]/div[2]/button/span", clickOptions),
   ]);
-  if(Date === Date.now){
     const [response] = await Promise.all([
       page.waitForNavigation(waitOptions),
-      page.click('link-gold', clickOptions),
+      page.click("//*[@id='page-scroll']/div[1]/div/div/div[2]/div/div[2]/div[1]/div/table/tbody/tr[1]/td[4]/a", clickOptions),
     ]);
-  };
 };
 
 async function checkDice() {
