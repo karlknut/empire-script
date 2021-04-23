@@ -9,9 +9,10 @@ const schedule = require('node-schedule');
 [x] Find Current Dice Count through XPath
 [x] Function to check if Current Dice Count <= 3
 [] If function returns true, send iPhone push-notification
+[] Schedule script to run every 30 seconds
 */
 
-(async () => {
+let empire_main = async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -34,4 +35,6 @@ const schedule = require('node-schedule');
   lessThree(diceCount);
 
   await browser.close();
-})();
+};
+
+module.exports = empire_main
