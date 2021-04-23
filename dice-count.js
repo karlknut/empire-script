@@ -1,6 +1,6 @@
 /*
-[] Open browser
-[] Go to given url
+[x] Open browser
+[x] Go to given url
 [] Check for correct 'Roulette' link
 [] Click link
 [] Check for todays date, compare it
