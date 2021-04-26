@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
-const schedule = require('node-schedule');
+const wbm = require('wbm');
 
 /*
 [x] Open browser
@@ -9,10 +9,10 @@ const schedule = require('node-schedule');
 [x] Find Current Dice Count through XPath
 [x] Function to check if Current Dice Count <= 3
 [] If function returns true, send iPhone push-notification
-[] Schedule script to run every 30 seconds
+[x] Schedule script to run every 30 seconds
 */
 
-(async () => {
+const empireMain = async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -24,16 +24,19 @@ const schedule = require('node-schedule');
 
   let diceCount = await page.evaluate(el => el.textContent, elHandle[0]);
 
-  const lessThree = (diceCount) => {
-    if (diceCount <= 3) {
-      console.log('Current Dice Count is: ', diceCount);
-    } else {
-      console.log('Current Dice Count is over 3.');
-    };
-  };
-
-  lessThree(diceCount);
-
   await browser.close();
+
+  return diceCount < 3;
 };
 
+module.exports = empireMain;
+
+const roll = shouldRoll();
+if (roll) {
+  wbm.start().then(async () => {
+    const phones = ['+3725526641'];
+    const message = 'Dice count is <= 3!';
+    await wbm.send(phones, message);
+    await wbm.end();
+}).catch(err => console.log(err));
+}
