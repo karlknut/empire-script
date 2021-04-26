@@ -12,7 +12,7 @@ const schedule = require('node-schedule');
 [] Schedule script to run every 30 seconds
 */
 
-let empire_main = async () => {
+(async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -37,4 +37,3 @@ let empire_main = async () => {
   await browser.close();
 };
 
-module.exports = empire_main
