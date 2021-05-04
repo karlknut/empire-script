@@ -1,10 +1,10 @@
 /*
 [x] Open browser
 [x] Go to given url
-[] Check for correct 'Roulette' link
-[] Click link
-[] Check for todays date, compare it
-[] Click numbers under 'Rolls' if 'Date' matches
+[x] Check for correct 'Roulette' link
+[x] Click link
+[x] Check for todays date, compare it
+[x] Click numbers under 'Rolls' if 'Date' matches
 [] Check for last 60 rolls, if there has been ' - 0' in html
 [] If false, send iPhone push-notification
 */
@@ -39,6 +39,9 @@ async function history() {
 
 async function checkDice() {
   // if XPath '//*[@id="page-scroll"]/div[1]/div/div/div[15]/span' text does not contain ' - 0' for last 60
+  if ("//*[@id='page-scroll']/div[1]/div/div/div[5]/span" === ' - 0'){
+    console.log("there's dice.")
+  }
 }
 
 async function monitor() {

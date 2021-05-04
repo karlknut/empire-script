@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
-const wbm = require('wbm');
 
 /*
 [x] Open browser
@@ -13,30 +12,24 @@ const wbm = require('wbm');
 */
 
 const empireMain = async () => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+  return new Promise(async (resolve) => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
 
-  await page.goto('https://csgoempire.com/');
+    await page.goto('https://csgoempire.com/');
 
-  await page.waitForXPath("//*[@id='page-scroll']/div[1]/div/div/div[3]/div/div[2]/div[5]");
-  
-  let elHandle = await page.$x("//*[@id='page-scroll']/div[1]/div/div/div[3]/div/div[2]/div[5]");
+    await page.waitForXPath("//*[@id='page-scroll']/div[1]/div/div/div[3]/div/div[2]/div[5]");
+    
+    let elHandle = await page.$x("//*[@id='page-scroll']/div[1]/div/div/div[3]/div/div[2]/div[5]");
 
-  let diceCount = await page.evaluate(el => el.textContent, elHandle[0]);
+    let diceCount = await page.evaluate(el => el.textContent, elHandle[0]);
 
-  await browser.close();
+    await browser.close();
 
-  return diceCount < 3;
+    console.log(diceCount);
+
+    return resolve(diceCount);
+  });
 };
 
 module.exports = empireMain;
-
-const roll = shouldRoll();
-if (roll) {
-  wbm.start().then(async () => {
-    const phones = ['+3725526641'];
-    const message = 'Dice count is <= 3!';
-    await wbm.send(phones, message);
-    await wbm.end();
-}).catch(err => console.log(err));
-}
